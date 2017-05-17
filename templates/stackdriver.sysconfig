@@ -4,5 +4,5 @@ AUTOGENERATE_COLLECTD_CONFIG="yes"
 # url to a proxy for outbound https
 PROXY_URL=""
 
-# your stackdriver api key
-STACKDRIVER_API_KEY="{{ stackdriver_api_key }}"
+# Authenticate using GCM (/etc/google/auth/application_default_credentials.json), instead api key
+DETECT_GCM="yes"
