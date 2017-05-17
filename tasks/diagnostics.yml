@@ -37,9 +37,10 @@
     --host={{ stackdriver_mongodb_host }}
     --port={{ stackdriver_mongodb_port }}
     {% if stackdriver_mongodb_username %}
-    --username={{ stackdriver_mongodb_username }}
-    --password={{ stackdriver_mongodb_password }}
+    --username="{{ stackdriver_mongodb_username }}"
+    --password="{{ stackdriver_mongodb_password }}"
     {% endif %}
+    admin
   changed_when: False
   when: stackdriver_mongodb_enabled
 
