@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/python2
 
 # Copyright 2014 Google Inc. All rights reserved.
 #
@@ -45,12 +45,12 @@ def get_facts():
 def get_result():
     try:
         return dict(ansible_facts=get_facts())
-    except Exception, e:
+    except Exception as e:
         return dict(failed=True, msg=str(e))
 
 def main():
     result = get_result()
-    print json.dumps(result)
+    print(json.dumps(result))
 
 if __name__ == '__main__':
     main()
