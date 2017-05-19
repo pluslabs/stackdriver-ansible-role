@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/python
 
 # Copyright 2014 Google Inc. All rights reserved.
 #
@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from ansible.module_utils.basic import *
 
@@ -64,15 +64,15 @@ def main():
     timeout = module.params['timeout']
 
     if username:
-        password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+        password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
         password_mgr.add_password(None, url, username, password)
-        handler = urllib2.HTTPBasicAuthHandler(password_mgr)
-        opener = urllib2.build_opener(handler)
-        urllib2.install_opener(opener)
+        handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
+        opener = urllib.request.build_opener(handler)
+        urllib.request.install_opener(opener)
 
     try:
-        f = urllib2.urlopen(url, timeout=timeout)
-    except (OSError, urllib2.URLError) as e:
+        f = urllib.request.urlopen(url, timeout=timeout)
+    except (OSError, urllib.error.URLError) as e:
         module.fail_json(msg=str(e))
 
     if f.getcode() == 200:
