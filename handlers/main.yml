@@ -19,7 +19,6 @@
   service: name={{ stackdriver_extractor_service }} state=restarted
 
 - name: stackdriver updated
-  sudo: no
   local_action:
     module: stackdriver
     event: annotation
