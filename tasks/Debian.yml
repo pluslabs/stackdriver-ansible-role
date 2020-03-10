@@ -22,16 +22,16 @@
     id: 7B190BD2
     state: absent
 
+- name: "[Debian] Ensure Stackdriver's GPG key is available."
+  apt_key: url="https://packages.cloud.google.com/apt/doc/apt-key.gpg" state=present
+
 - name: "[Debian] Enable the Stackdriver apt repository."
   apt_repository:
     repo: "deb {{ stackdriver_package_repo }} google-cloud-monitoring-{{ ansible_lsb.codename }}-all main"
     state: present
 
-- name: "[Debian] Ensure Stackdriver's GPG key is available."
-  apt_key: url="https://packages.cloud.google.com/apt/doc/apt-key.gpg" state=present
-
 - name: "[Debian] Install the Stackdriver agent."
-  apt: name={{ stackdriver_collectd_package }} state=present update_cache=yes
+  apt: name={{ stackdriver_collectd_package }} state=latest update_cache=yes
   notify: stackdriver updated
 
 - name: "[Debian] Install YAJL if needed for curl_json."
