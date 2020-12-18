@@ -31,7 +31,11 @@
     state: present
 
 - name: "[Debian] Install the Stackdriver agent."
-  apt: name={{ stackdriver_collectd_package }} state=latest update_cache=yes
+  apt:
+    name: "{{ stackdriver_collectd_package }}=5.5.2-1002.xenial"
+    state: present
+    update_cache: yes
+    force: True
   notify: stackdriver updated
 
 - name: "[Debian] Install YAJL if needed for curl_json."
